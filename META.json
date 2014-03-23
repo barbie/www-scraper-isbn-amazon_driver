@@ -44,6 +44,10 @@
     },
 
     "provides": {
+        "WWW::Scraper::ISBN::Amazon_Driver": {
+            "file": "lib/WWW/Scraper/ISBN/Amazon_Driver.pm",
+            "version": "0.32"
+        },
         "WWW::Scraper::ISBN::AmazonUK_Driver": {
             "file": "lib/WWW/Scraper/ISBN/AmazonUK_Driver.pm",
             "version": "0.32"
