@@ -178,10 +178,12 @@ sub _parse {
 
     # The images
     my ($json) = $html =~ /var colorImages = ([^;]+);/si;
-    my $code = decode_json($json);
-    my @order = grep {$_} $code->{initial}[0]{thumb}, $code->{initial}[0]{landing}, @{$code->{initial}[0]{main}}, $code->{initial}[0]{large};
-    $data->{thumb_link} = $order[0]     if(@order);
-    $data->{image_link} = $order[-1]    if(@order);
+    if($json) {
+        my $code = decode_json($json);
+        my @order = grep {$_} $code->{initial}[0]{thumb}, $code->{initial}[0]{landing}, @{$code->{initial}[0]{main}}, $code->{initial}[0]{large};
+        $data->{thumb_link} = $order[0]     if(@order);
+        $data->{image_link} = $order[-1]    if(@order);
+    }
 
     ($data->{publisher},$data->{pubdate}) = ($data->{published} =~ /\s*(.*?)(?:;.*?)?\s+\((.*?)\)/) if($data->{published});
     $data->{isbn10} =~ s/[^\dX]+//g if($data->{isbn10});
