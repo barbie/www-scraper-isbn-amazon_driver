@@ -111,6 +111,13 @@ sub search {
     return $self->handler("Amazon UK website appears to be unavailable.")
 	    if($@ || !$mech->success() || !$mech->content());
 
+    return $self->_parse($mech);
+}
+
+sub _parse {
+    my $self = shift;
+    my $mech = shift;
+
 	# The Book page
     my $html = $mech->content;
     my $data = {};
@@ -197,7 +204,7 @@ sub search {
 	return $self->book;
 }
 
-q{currently reading: Nation by Terry Pratchett};
+q{currently reading: 'Torn Apart: The Life of Ian Curtis' by Mick Middles and Lindsay Reade};
 
 __END__
 
@@ -233,7 +240,7 @@ be forthcoming, please feel free to (politely) remind me.
 
 =head1 COPYRIGHT & LICENSE
 
-  Copyright (C) 2004-2013 Barbie for Miss Barbell Productions
+  Copyright (C) 2004-2014 Barbie for Miss Barbell Productions
 
   This distribution is free software; you can redistribute it and/or
   modify it under the Artistic Licence v2.

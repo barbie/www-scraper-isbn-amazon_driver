@@ -110,6 +110,13 @@ sub search {
     return $self->handler("Amazon US website appears to be unavailable.")
         if($@ || !$mech->success() || !$mech->content());
 
+    return $self->_parse($mech);
+}
+
+sub _parse {
+    my $self = shift;
+    my $mech = shift;
+
     # The Book page
     my $html = $mech->content;
     my $data = {};
@@ -214,7 +221,7 @@ sub search {
     return $self->book;
 }
 
-q{currently reading: Red Rabbit by Tom Clancy};
+q{currently reading: 'Soul Music' by Terry Pratchett};
 
 __END__
 
@@ -250,7 +257,7 @@ be forthcoming, please feel free to (politely) remind me.
 
 =head1 COPYRIGHT & LICENSE
 
-  Copyright (C) 2004-2013 Barbie for Miss Barbell Productions
+  Copyright (C) 2004-2014 Barbie for Miss Barbell Productions
 
   This distribution is free software; you can redistribute it and/or
   modify it under the Artistic Licence v2.
