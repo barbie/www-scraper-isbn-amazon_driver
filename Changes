@@ -1,6 +1,8 @@
 Revision history for WWW::Scraper::ISBN::Amazon_Driver
 ======================================================
 
+        - getting the size can still fail, if data not available.
+
 0.33    2014-03-24
         - added Amazon_Driver.pm, to help with PAUSE permissions.
 

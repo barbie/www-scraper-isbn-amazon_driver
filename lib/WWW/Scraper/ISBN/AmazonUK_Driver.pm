@@ -119,12 +119,14 @@ sub search {
 
     my @size                            = $html =~ m!<li><b>\s*Product Dimensions:\s*</b>\s*([\d.]+) x ([\d.]+) x ([\d.]+) (cm)\s*</li>!si;
     @size                               = $html =~ m!<li><b>\s*Product Dimensions:\s*</b>\s*([\d.]+) x ([\d.]+) x ([\d.]+) (inches)\s*</li>!si unless(@size);
-    my $type = pop @size;
-    ($data->{depth},$data->{width},$data->{height}) = sort @size;    
-    if($type eq 'cm') {
-        $data->{$_}  = int($data->{$_} * 10)  for(qw( height width depth ));
-    } elsif($type eq 'inches') {
-        $data->{$_}  = int($data->{$_} / $IN2MM)  for(qw( height width depth ));
+    if(@size) {
+        my $type = pop @size;
+        ($data->{depth},$data->{width},$data->{height}) = sort @size;    
+        if($type eq 'cm') {
+            $data->{$_}  = int($data->{$_} * 10)  for(qw( height width depth ));
+        } elsif($type eq 'inches') {
+            $data->{$_}  = int($data->{$_} / $IN2MM)  for(qw( height width depth ));
+        }
     }
     
     ($data->{binding},$data->{pages})   = $html =~ m!<li><b>(Paperback|Hardcover):</b>\s*([\d.]+)\s*pages</li>!si;
