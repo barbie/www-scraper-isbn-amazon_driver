@@ -2,6 +2,7 @@ Revision history for WWW::Scraper::ISBN::Amazon_Driver
 ======================================================
 
         - amazon.com updated HTML output.
+        - fixed distribution name in META.
 
 0.35    2014-04-05
         - reduce size of test data footprint.
