@@ -1,6 +1,7 @@
 Revision history for WWW-Scraper-ISBN-Amazon_Driver
 ===================================================
 
+0.37    2014-05-29
         - added conversion routines to obtain EAN13.
         - upgrade to WWW-Scraper-ISBN-1.00.
         - changed to regex test for weight data on US site.
