@@ -149,6 +149,7 @@ sub _parse {
     ($data->{isbn13})                   = $html =~ m!<li><b>ISBN-13:</b>\s*(.*?)</li>!si;
     ($data->{content})                  = $html =~ m!<meta name="description" content="([^"]+)"!si;
     ($data->{description})              = $html =~ m!From the Back Cover</h3>\s*<div class="productDescriptionWrapper"\s*>\s*<P>(.*?)<div!si;  
+    ($data->{description})              = $html =~ m!<div id="bookDescription_feature_div"[^>]*>.*?<noscript>(.*?)</noscript!si unless($data->{description});  
 
     $data->{weight} = int($data->{weight} / $OZ2G)  if($data->{weight});
 
@@ -167,7 +168,16 @@ sub _parse {
 
 #use Data::Dumper;
 #print STDERR "\n# code=[".Dumper($code)."]\n";
+    } else {
+        my ($code) = $html =~ /'imageGalleryData'\s*:\s*([^;]+);/si;
+        if($code) {
+            ($data->{thumb_link}) = $code =~ /"thumbUrl":\s*"([^+]+)"/;
+            ($data->{image_link}) = $code =~ /"mainUrl":\s*"([^+]+)"/;
+        }
+#use Data::Dumper;
+#print STDERR "\n# code=[".Dumper($code)."]\n";
     }
+
 
 #    {\"initial\":[{\"large\":\"http://ecx.images-amazon.com/images/I/31cLTIXHKgL.jpg\",\"landing\":[\"http://ecx.images-amazon.com/images/I/31cLTIXHKgL._SY300_.jpg\"],\"thumb\":\"http://ecx.images-amazon.com/images/I/31cLTIXHKgL._SS40_.jpg\",\"main\":[\"http://ecx.images-amazon.com/images/I/31cLTIXHKgL._SX342_.jpg\",\"http://ecx.images-amazon.com/images/I/31cLTIXHKgL._SX385_.jpg\"]}]};
 
