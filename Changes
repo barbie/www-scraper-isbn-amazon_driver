@@ -1,6 +1,8 @@
 Revision history for WWW-Scraper-ISBN-Amazon_Driver
 ===================================================
 
+        - extended test suite.
+
 0.41    2014-11-01
         - ping fix for Cygwin (thanks to Alexandr Ciornii).
         - uninitialized warning fix.
