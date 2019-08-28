@@ -29,6 +29,7 @@ This module requires these modules:
 For testing the module requires these modules:
 
   IO::File
+  Test::MockModule
   Test::More
 
 For optional testing the module would like these modules:
